@@ -10,7 +10,6 @@
     <meta name="author" content="">
 
     <title>Parking GPS</title>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -24,13 +23,34 @@
 
   <body>
     <div class="container">
-      <div class="jumbotron"><h1>Parking GPS</h1></div>
+      <div class="jumbotron"><h1>Enviar Pontos</h1></div>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+        <li class="breadcrumb-item active">Enviar Pontos</li>
+      </ol>
+        <form class="form-inline" action="ponto.php" method="post">
+          <div class="form-group">
+            <label for="data">Data</label>
+            <input type="date" class="form-control" id="data" name="data" placeholder="2016-06-12">
+          </div>
+          <div class="form-group">
+            <label for="hora">Hora</label>
+            <input type="time" class="form-control" id="hora" name="hora" placeholder="2016-06-12">
+          </div>
+          <div class="form-group">
+            <label for="longitude">Longitude</label>
+            <input type="number" step="0.01" class="form-control" id="longitude" name="longitude" placeholder="-48">
+          </div>
+          <div class="form-group">
+            <label for="latitude">Latitude</label>
+            <input type="number" step="0.01" class="form-control" id="latitude" name="latitude" placeholder="-26">
+          </div>
 
-      <a href="cadastro_veiculo.php" class="btn btn-default">Cadastro de Veículo</a>
 
-      <a href="enviar_ponto.php" class="btn btn-default">Enviar Ponto</a>
-      <a href="ver_movimentacoes.php" class="btn btn-default">Ver Movimentação</a>
-      <a href="cadastro_veiculo.php" class="btn btn-default">Ver Estacionamentos Próximos</a>
+          <button type="submit" class="btn btn-default">Send</button>
+        </form>
+
+
     </div> <!-- /container -->
   </body>
 </html>

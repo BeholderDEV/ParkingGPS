@@ -45,7 +45,17 @@
             <label for="latitude">Latitude</label>
             <input type="number" step="0.01" class="form-control" id="latitude" name="latitude" placeholder="-26">
           </div>
-
+            <div class="form-group">
+            <label for="carro">Lista dos carros</label>
+              <select class="form-control" name="carro" id="carro">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+                
+            </div>
+            <?php include 'lista_carros.php'; ?>
 
           <button type="submit" class="btn btn-default">Send</button>
         </form>

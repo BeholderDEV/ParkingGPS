@@ -39,17 +39,17 @@
           </div>
           <div class="form-group">
             <label for="longitude">Longitude</label>
-            <input type="number" step="0.01" class="form-control" id="longitude" name="longitude" placeholder="-48">
+            <input type="number" step="0.0000000001" class="form-control" id="longitude" name="longitude" placeholder="-48">
           </div>
           <div class="form-group">
             <label for="latitude">Latitude</label>
-            <input type="number" step="0.01" class="form-control" id="latitude" name="latitude" placeholder="-26">
+            <input type="number" step="0.0000000001" class="form-control" id="latitude" name="latitude" placeholder="-26">
           </div>
             <div class="form-group">
             <label for="carro">Lista dos carros</label>
-              <select class="form-control" name="carro" id="carro">                
+              <select class="form-control" name="carro" id="carro">
                 <?php include 'lista_carros.php'; ?>
-              </select>                
+              </select>
             </div>
 
           <button type="submit" class="btn btn-default">Send</button>

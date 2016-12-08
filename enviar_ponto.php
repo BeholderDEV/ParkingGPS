@@ -49,8 +49,7 @@
             <label for="carro">Lista dos carros</label>
               <select class="form-control" name="carro" id="carro">                
                 <?php include 'lista_carros.php'; ?>
-              </select>
-                
+              </select>                
             </div>
 
           <button type="submit" class="btn btn-default">Send</button>

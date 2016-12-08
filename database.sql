@@ -23,6 +23,8 @@ insert into estacionamento (nome,preco, area) values ('Univali', 2.50, st_geomfr
 insert into estacionamento (nome,preco, area) values ('Rio Grande', 2.50, st_geomfromtext('POLYGON((-57.76611328125 -29.96266823880552,-52.36083984375 -33.38386623304053,-49.28466796875 -28.65986367406166,-54.0966796875 -26.85164162108546,-57.76611328125 -29.96266823880552))', 4326));
 insert into estacionamento (nome,preco, area) values ('Curitiba', 2.50, st_geomfromtext('POLYGON((-49.4989013671875 -25.48147903668929,-49.08966064453125 -25.674716920934443,-48.88092041015625 -25.354962879196894,-49.36431884765625 -25.220860161683355,-49.4989013671875 -25.48147903668929))', 4326));
 
+select * from get_movimentacao(placa);
+select * from get_conveniados_sorted(longitude, latitude);
 
 ------
 
@@ -75,11 +77,8 @@ $$
 		entrada record;
 		saida record;
 		preco_rec record;
-		tavadentro boolean := false;
 		estacionamentos record;
 		tempo_no_estacionamento interval;
-		ponto_inicial record;
-		ponto_final record;
 
 	begin
 		for estacionamentos in select * from get_entradas_estacionamento($1) loop
@@ -104,3 +103,53 @@ language plpgsql;
 select * from get_movimentacao(1);
 
 ------
+
+create or replace function get_conveniados(numeric, numeric) returns table(estacionamento_nome varchar(255), valor numeric, distancia numeric) as
+$$
+	declare
+		nome_estacionamento record;
+		entrada record;
+		saida record;
+		preco_rec record;
+		estacionamentos record;
+		tempo_no_estacionamento interval;
+
+	begin
+		for estacionamentos in select * from estacionamento loop
+
+			estacionamento_nome  := estacionamentos.nome;
+			valor := estacionamentos.preco;
+			distancia = ST_Distance( ST_GeomFromText('POINT(' || $1 || ' ' || $2 || ')',4326)::geography ,estacionamentos.area);
+			return next;
+		end loop;
+	end;
+$$
+language plpgsql;
+
+
+-----
+
+create or replace function get_conveniados_sorted(numeric, numeric) returns table(estacionamento_nome varchar(255), valor numeric, distancia numeric) as
+$$
+	declare
+		nome_estacionamento record;
+		entrada record;
+		saida record;
+		preco_rec record;
+		estacionamentos record;
+		tempo_no_estacionamento interval;
+
+	begin
+		for estacionamentos in select * from get_conveniados($1, $2) order by distancia loop
+
+			estacionamento_nome  := estacionamentos.estacionamento_nome;
+			valor := estacionamentos.valor;
+			distancia = estacionamentos.distancia;
+			return next;
+		end loop;
+	end;
+$$
+language plpgsql;
+
+
+select * from get_conveniados_sorted(-50.9765625, -27.710886603438052);

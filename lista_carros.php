@@ -13,5 +13,4 @@ while ($row = pg_fetch_row($result)) {
 
 // Closing connection
 pg_close($dbconn);
-header("location:https://geoparking.herokuapp.com/index.php");
 ?>

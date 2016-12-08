@@ -26,7 +26,7 @@ insert into estacionamento (nome,preco, area) values ('Curitiba', 2.50, st_geomf
 
 ------
 
-create or replace function get_entradas_estacionamento(int) returns setof record as
+create or replace function get_entradas_estacionamento(int) returns table(id_estacionamento integer, id_ponto_inicial integer, id_ponto_final integer) as
 $$
 	declare
 		carro_a record;
@@ -36,40 +36,71 @@ $$
 		estacionamento_atual record;
 		ponto_inicial record;
 		ponto_final record;
-		saida record;
 
 	begin
 		for pontos in select * from ponto p where p.id_carro = $1 loop
 			for estacionamentos in select * from estacionamento e loop
-				raise notice 'aqui antes do if % , %' ,st_astext(estacionamentos.area),st_astext(pontos.local_ponto);
 				if ST_Contains(estacionamentos.area,pontos.local_ponto) then
 					if tavadentro then
-						raise notice 'aqui no if';
 					else
 						tavadentro := true;
 						estacionamento_atual := estacionamentos;
 						ponto_inicial := pontos;
-						raise notice 'aqui dentro';
 					end if;
 				else
-					raise notice 'aqui não tem nada';
 					if tavadentro then
 						if estacionamentos.id = estacionamento_atual.id then
 							ponto_final := pontos;
-							saida.id_estacionamento := estacionamento_atual.id;
-							saida.id_ponto_inicial := ponto_inicial.id;
-							saida.id_ponto_final := ponto_final.id;
-							raise notice 'aqui';
-							return next saida;
+							id_estacionamento := estacionamento_atual.id;
+							id_ponto_inicial := ponto_inicial.id;
+							id_ponto_final := ponto_final.id;
+							return next ;
 						end if;
 					end if;
 				end if;
 			end loop;
 		end loop;
-		return;
-
 	end;
 $$
 language plpgsql;
 
-select get_entradas_estacionamento(1);
+select * from get_entradas_estacionamento(1);
+
+------
+
+create or replace function get_movimentacao(int) returns table(estacionamento_nome varchar(255), dataEntrada timestamp, dataSaida timestamp, permanencia numeric, valor numeric) as
+$$
+	declare
+		nome_estacionamento record;
+		entrada record;
+		saida record;
+		preco_rec record;
+		tavadentro boolean := false;
+		estacionamentos record;
+		tempo_no_estacionamento interval;
+		ponto_inicial record;
+		ponto_final record;
+
+	begin
+		for estacionamentos in select * from get_entradas_estacionamento($1) loop
+
+			select nome into nome_estacionamento from estacionamento e where e.id=estacionamentos.id_estacionamento;
+			select data_ponto into entrada from ponto p where p.id=estacionamentos.id_ponto_inicial;
+			select data_ponto into saida from ponto p where p.id=estacionamentos.id_ponto_final;
+
+			estacionamento_nome := nome_estacionamento.nome;
+			dataEntrada := entrada.data_ponto;
+			dataSaida := saida.data_ponto;
+			tempo_no_estacionamento := saida.data_ponto - entrada.data_ponto;
+			permanencia := EXTRACT(EPOCH FROM tempo_no_estacionamento::INTERVAL)/60;
+			select preco into preco_rec from estacionamento where id=estacionamentos.id_estacionamento;
+			valor := (preco_rec.preco)*permanencia;
+			return next;
+		end loop;
+	end;
+$$
+language plpgsql;
+
+select * from get_movimentacao(1);
+
+------

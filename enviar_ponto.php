@@ -47,15 +47,11 @@
           </div>
             <div class="form-group">
             <label for="carro">Lista dos carros</label>
-              <select class="form-control" name="carro" id="carro">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
+              <select class="form-control" name="carro" id="carro">                
+                <?php include 'lista_carros.php'; ?>
               </select>
                 
             </div>
-            <?php include 'lista_carros.php'; ?>
 
           <button type="submit" class="btn btn-default">Send</button>
         </form>

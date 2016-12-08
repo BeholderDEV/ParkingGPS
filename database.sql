@@ -15,7 +15,8 @@ create table carro(
 create table ponto(
   id serial primary key,
 	data_ponto timestamp,
-  local_ponto geometry
+  local_ponto geometry,
+    id_carro integer
 );
 
 

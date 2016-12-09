@@ -22,25 +22,28 @@
 
   <body>
     <div class="container">
-      <div class="jumbotron"><h1>Movimentações</h1></div>
+      <div class="jumbotron"><h1>Lista dos carros</h1></div>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-        <li class="breadcrumb-item active">Ver Movimentações</li>
+        <li class="breadcrumb-item active">Lista dos carros</li>
       </ol>
-        <form class="form-inline" action="movimentacoes.php" method="post">
-          <div class="form-group">
-            <label for="carro">Lista dos carros</label>
-              <select class="form-control" name="carro" id="carro">
-                <?php include 'lista_carros.php'; ?>
-              </select>
-            </div>
-          <button type="submit" class="btn btn-default">Ver</button>
-        </form>
+        <ul class="list-group">
+          <?php
+          // Connecting, selecting database
+          $dbconn = pg_connect("host=ec2-79-125-24-188.eu-west-1.compute.amazonaws.com port=5432 dbname=d5pp475o12d3qq user=bsuvisntqclmxj password=CFsGksfLw9_3Gcdmx8EE77d1D8 sslmode=require")
+              or die('Could not connect: ' . pg_last_error());
 
-        <?php
-          $tab = $_POST["tabela"];
-          echo $tab;
-        ?>
+          // Performing SQL query
+          $query = "Select * from carro";
+          $result = pg_query($query) or die('Query failed: ' . pg_last_error());
+
+          while ($row = pg_fetch_row($result)) {
+              echo "\n   <li class='list-group-item'>".$row[1]."</li> ";
+          }
+
+          pg_close($dbconn);
+          ?>
+        </ul>
 
     </div> <!-- /container -->
   </body>

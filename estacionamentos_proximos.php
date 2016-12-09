@@ -22,10 +22,10 @@
 
   <body>
     <div class="container">
-      <div class="jumbotron"><h1>Movimentações</h1></div>
+      <div class="jumbotron"><h1>Estacionamentos Próximos</h1></div>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-        <li class="breadcrumb-item active">Ver Movimentações</li>
+        <li class="breadcrumb-item active">Estacionamentos Próximos</li>
       </ol>
         <form class="form-inline" action="estacionamentos.php" method="post">
             <div class="form-group">
@@ -36,7 +36,7 @@
               <label for="latitude">Latitude</label>
               <input type="number" step="any" class="form-control" id="latitude" name="latitude" placeholder="-26">
             </div>
-          <button type="submit" class="btn btn-default">Ver</button>
+          <button type="submit" class="btn btn-primary">Ver</button>
         </form>
 
         <?php

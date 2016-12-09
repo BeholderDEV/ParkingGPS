@@ -34,7 +34,7 @@
                 <?php include 'lista_carros.php'; ?>
               </select>
             </div>
-          <button type="submit" class="btn btn-default">Ver</button>
+          <button type="submit" class="btn btn-primary">Ver</button>
         </form>
 
         <?php

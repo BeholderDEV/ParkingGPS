@@ -23,5 +23,5 @@ $result = pg_query($query) or die('Query failed: ' . pg_last_error());
 
 // Closing connection
 pg_close($dbconn);
-header("location:https://geoparking.herokuapp.com/index.php");
+header("location:index.php");
 ?>

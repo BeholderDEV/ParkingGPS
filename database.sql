@@ -28,6 +28,8 @@ insert into estacionamento (nome,preco, area) values ('Curitiba', 2.50, st_geomf
 select * from get_movimentacao(placa);
 select * from get_conveniados_sorted(longitude, latitude);
 
+select c.placa as carro, count(p.local_ponto) from carro c full join ponto p on (p.id_carro=c.id) group by c.placa;
+
 ------
 
 create or replace function get_entradas_estacionamento(int) returns table(id_estacionamento integer, id_ponto_inicial integer, id_ponto_final integer) as

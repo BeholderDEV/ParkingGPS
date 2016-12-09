@@ -32,7 +32,7 @@
 
       <a href="ver_movimentacoes.php" class="btn btn-default">Ver Movimentação</a>
 
-      <a href="cadastro_veiculo.php" class="btn btn-default">Ver Estacionamentos Próximos</a>
+      <a href="estacionamentos_proximos.php" class="btn btn-default">Ver Estacionamentos Próximos</a>
 
       <a href="ver_carros.php" class="btn btn-default">Lista de Carros</a>
     </div> <!-- /container -->

@@ -27,7 +27,7 @@
         <li class="breadcrumb-item"><a href="index.php">Home</a></li>
         <li class="breadcrumb-item active">Ver Movimentações</li>
       </ol>
-        <form class="form-inline" action="movimentacoes.php" method="post">
+        <form class="form-inline" action="estacionamentos.php" method="post">
           <div class="form-group">
             <label for="carro">Lista dos carros</label>
               <select class="form-control" name="carro" id="carro">

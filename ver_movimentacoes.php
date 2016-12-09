@@ -22,7 +22,7 @@
 
   <body>
     <div class="container">
-      <div class="jumbotron"><h1>Movimentações</h1></div>
+      <div class="jumbotron"><h1><img class="car" src="img/parking.png">Movimentações</h1></div>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.php">Home</a></li>
         <li class="breadcrumb-item active">Ver Movimentações</li>
@@ -30,8 +30,9 @@
         <form class="form-inline" action="movimentacoes.php" method="post">
           <div class="form-group">
             <label for="carro">Lista dos carros</label>
-              <select class="form-control" name="carro" id="carro">
+              <select class="form-control select select-primary" data-toggle="select" name="carro" id="carro">
                 <?php include 'lista_carros.php'; ?>
+
               </select>
             </div>
           <button type="submit" class="btn btn-primary">Ver</button>

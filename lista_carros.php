@@ -8,7 +8,7 @@ $query = "Select * from carro";
 $result = pg_query($query) or die('Query failed: ' . pg_last_error());
 
 while ($row = pg_fetch_row($result)) {
-    echo "\n <option id='".$row[0]."'>".$row[1]."</option> ";
+    echo "\n <option class='flat' id='".$row[0]."'>".$row[1]."</option> ";
 }
 
 pg_close($dbconn);

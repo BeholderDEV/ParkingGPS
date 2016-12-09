@@ -22,7 +22,7 @@
 
   <body>
     <div class="container">
-      <div class="jumbotron"><h1>Estacionamentos Próximos</h1></div>
+      <div class="jumbotron"><h1><img class="car" src="img/parking.png">Estacionamentos Próximos</h1></div>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.php">Home</a></li>
         <li class="breadcrumb-item active">Estacionamentos Próximos</li>

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="css/estilo.css"></link>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -23,7 +24,7 @@
 
   <body>
     <div class="container">
-      <div class="jumbotron"><h1> Cadastro Veículo</h1></div>
+      <div class="jumbotron"><h1><img class="car" src="img/parking.png"> Cadastro Veículo</h1></div>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.php">Home</a></li>
         <li class="breadcrumb-item active">Cadastro Veículos</li>
@@ -34,7 +35,7 @@
             <input type="text" class="form-control" id="placa" name="placa" placeholder="AAA-4444">
           </div>
 
-          <button type="submit" class="btn btn-default">Send</button>
+          <button type="submit" class="btn btn-primary">Send</button>
         </form>
 
 

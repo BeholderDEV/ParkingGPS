@@ -24,7 +24,7 @@
 
   <body>
     <div class="container">
-      <div class="jumbotron"><h1>Parking GPS</h1></div>
+      <div class="jumbotron"><h1><img class="car" src="img/parking.png"> Parking GPS</h1></div>
 
       <a href="cadastro_veiculo.php" class="btn btn-primary">Cadastro de Veículo</a>
 

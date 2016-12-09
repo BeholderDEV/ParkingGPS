@@ -34,14 +34,21 @@
               or die('Could not connect: ' . pg_last_error());
 
           // Performing SQL query
-          $query = "Select * from carro";
+          $query = "select c.placa as carro, count(p.local_ponto) from carro c full join ponto p on (p.id_carro=c.id) group by c.placa;";
           $result = pg_query($query) or die('Query failed: ' . pg_last_error());
 
-          while ($row = pg_fetch_row($result)) {
-              echo "\n   <li class='list-group-item'>".$row[1]."</li> ";
-          }
+          $out = "";
+        $tabela = "<table class='table table-hover'><thead><tr><th>Carro</th><th>Pontos</th></tr></thead>";
+        while ($row = pg_fetch_row($result)) {
+            $out = $out."<tr><td>".$row[0]."</td><td>".$row[1]."</td><tr>";
+        }
+        $tabela = $tabela.$out."</tabela>";
+        // Closing connection
+        pg_close($dbconn);
 
-          pg_close($dbconn);
+        echo '<form id="myForm" action="ver_movimentacoes.php" method="post">';
+        echo '<input type="hidden" name="tabela" value="'.$tabela.'">';
+        echo '</form><script type="text/javascript">document.getElementById("myForm").submit();</script>';
           ?>
         </ul>
 

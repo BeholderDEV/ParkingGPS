@@ -29,8 +29,12 @@
       <a href="cadastro_veiculo.php" class="btn btn-default">Cadastro de Veículo</a>
 
       <a href="enviar_ponto.php" class="btn btn-default">Enviar Ponto</a>
+
       <a href="ver_movimentacoes.php" class="btn btn-default">Ver Movimentação</a>
+
       <a href="cadastro_veiculo.php" class="btn btn-default">Ver Estacionamentos Próximos</a>
+
+      <a href="ver_carros.php" class="btn btn-default">Lista de Carros</a>
     </div> <!-- /container -->
   </body>
 </html>

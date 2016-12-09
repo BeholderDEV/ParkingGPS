@@ -13,7 +13,13 @@ $result = pg_query($query) or die('Query failed: ' . pg_last_error());
 $out = "";
 $tabela = "<table class='table table-hover'><thead><tr><th>Estacionamento</th><th>Valor</th><th>Distância</th></tr></thead>";
 while ($row = pg_fetch_row($result)) {
-    $out = $out."<tr><td>".$row[0]."</td><td>".$row[1]."</td><td>".$row[2]."</td><tr>";
+    $dist = round($row[2]);
+    $kind = " m";
+    if($dist>1000){
+        $dist = round($dist/1000,2);
+        $kind = " Km";
+    }
+    $out = $out."<tr><td>".$row[0]."</td><td>R$ ".round($row[1],2)."</td><td>".$dist.$kind."</td><tr>";
 }
 $tabela = $tabela.$out."</tabela>";
 // Closing connection

@@ -15,9 +15,9 @@ $query = "select * from get_movimentacao(".$row[0].");";
 $result = pg_query($query) or die('Query failed: ' . pg_last_error());
 
 $out = "";
-$tabela = "<table class='table table-hover'><thead><tr><th>Estacionamento</th><th>Data Entrada</th><th>Data Saida</th><th>Permanencia (min)</th><th>Valor</th></tr></thead>";
+$tabela = "<table class='table table-hover'><thead><tr><th>Estacionamento</th><th>Data Entrada</th><th>Data Saida</th><th>Permanencia</th><th>Valor</th></tr></thead>";
 while ($row = pg_fetch_row($result)) {
-    $out = $out."<tr><td>".$row[0]."</td><td>".$row[1]."</td><td>".$row[2]."</td><td>".$row[3]."</td><td>".$row[4]."</td><tr>";
+    $out = $out."<tr><td>".$row[0]."</td><td>".$row[1]."</td><td>".$row[2]."</td><td>".$row[3]." min</td><td>R$ ".round($row[4],2)."</td><tr>";
 }
 $tabela = $tabela.$out."</tabela>";
 // Closing connection

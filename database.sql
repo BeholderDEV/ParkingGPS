@@ -60,6 +60,7 @@ $$
 							id_estacionamento := estacionamento_atual.id;
 							id_ponto_inicial := ponto_inicial.id;
 							id_ponto_final := ponto_final.id;
+							tavadentro:=false;
 							return next ;
 						end if;
 					end if;
@@ -70,7 +71,7 @@ $$
 $$
 language plpgsql;
 
-select * from get_entradas_estacionamento(1);
+select * from get_entradas_estacionamento(8);
 
 ------
 

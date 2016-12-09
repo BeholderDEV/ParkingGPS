@@ -28,11 +28,13 @@
         <li class="breadcrumb-item active">Ver Movimentações</li>
       </ol>
         <form class="form-inline" action="estacionamentos.php" method="post">
-          <div class="form-group">
-            <label for="carro">Lista dos carros</label>
-              <select class="form-control" name="carro" id="carro">
-                <?php include 'lista_carros.php'; ?>
-              </select>
+            <div class="form-group">
+              <label for="longitude">Longitude</label>
+              <input type="number" step="any" class="form-control" id="longitude" name="longitude" placeholder="-48">
+            </div>
+            <div class="form-group">
+              <label for="latitude">Latitude</label>
+              <input type="number" step="any" class="form-control" id="latitude" name="latitude" placeholder="-26">
             </div>
           <button type="submit" class="btn btn-default">Ver</button>
         </form>

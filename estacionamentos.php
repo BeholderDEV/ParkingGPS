@@ -4,14 +4,10 @@ $dbconn = pg_connect("host=ec2-79-125-24-188.eu-west-1.compute.amazonaws.com por
     or die('Could not connect: ' . pg_last_error());
 
 // Performing SQL query
-$carro = strtoupper($_POST["carro"]);
+$longitude = addslashes($_POST["longitude"]);
+$latitude = addslashes($_POST["latitude"]);
 
-$query = "Select id from carro where placa='".$carro."'";
-$result = pg_query($query) or die('Query failed: ' . pg_last_error());
-
-$row = pg_fetch_row($result);
-
-$query = "select * from get_conveniados_sorted(".$row[0].");";
+$query = "select * from get_conveniados_sorted(".$longitude.", ".$latitude.");";
 $result = pg_query($query) or die('Query failed: ' . pg_last_error());
 
 $out = "";
